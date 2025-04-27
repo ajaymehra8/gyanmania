@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import type { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../../types';
-import Header from '../../Header';
-import Sidebar from '../../Sidebar';
+import { RootStackParamList } from '../../types';
+import Header from '../Header';
+import Sidebar from '../Sidebar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 type VideoPlayerRouteProp = RouteProp<RootStackParamList, 'VideoPlayer'>;

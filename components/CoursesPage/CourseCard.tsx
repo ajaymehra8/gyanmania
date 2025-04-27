@@ -1,0 +1,147 @@
+import React from 'react';
+import {
+  Image,
+  TouchableOpacity,
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '../../types';
+type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SingleCourse'
+>;
+
+interface Course {
+  image: string;
+  title: string;
+  price: number;
+  discount?: number;
+}
+interface props {
+  item: Course;
+}
+const {width: screenWidth} = Dimensions.get('window');
+
+const CourseCard = ({item}: props) => {
+  const navigation = useNavigation<NavigationProp>();
+  const handleClick = () => {
+    navigation.navigate('SingleCourse', {_id: 'kldsa'});
+  };
+  const shortText = item.title.length > 24 ? item.title.slice(0, 24) : '';
+  const getDiscountPrice = (price: number, discount: number) => {
+    const discountPrice = discount * (100 / price);
+    const finalPrice = price - discountPrice;
+
+    // Round to 2 decimal places
+    return parseFloat(finalPrice.toFixed(2));
+  };
+  return (
+    <TouchableOpacity activeOpacity={1} onPress={handleClick}>
+      <View style={styles.courseCard}>
+        <Image
+          source={{uri: item.image}}
+          style={styles.courseImage}
+          resizeMode="stretch"
+        />
+        <View style={styles.contentView}>
+          <Text style={styles.title}>
+            {shortText ? `${shortText} ...` : item.title}
+          </Text>
+          {!item.discount ? (
+            <Text>₹ {item.price}</Text>
+          ) : (
+            <View style={styles.priceView}>
+              <Text style={styles.priceText}>
+                ₹ {getDiscountPrice(item.price, item.discount)}
+              </Text>
+
+              <Text style={styles.originalPriceText}>₹ {item.price}</Text>
+              <Text style={styles.discountText}>{item.discount}% off</Text>
+            </View>
+          )}
+          <TouchableOpacity activeOpacity={1} style={styles.btn} onPress={handleClick}>
+            <Text style={styles.btnText}>Buy Course</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+};
+const styles = StyleSheet.create({
+  courseCard: {
+    width: screenWidth - 10,
+    minHeight: 120,
+    paddingVertical: 20,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 15,
+
+    borderColor: 'gray',
+    backgroundColor: 'white',
+    paddingHorizontal: 10,
+    paddingRight: 10,
+  },
+
+  courseImage: {
+    width: '40%',
+    height: 110,
+    borderRadius: 10,
+  },
+  contentView: {
+    width: '50%',
+    gap: 5,
+  },
+  title: {
+    width: '99%',
+    color: 'black',
+    fontWeight: 700,
+    fontSize: 15,
+    marginTop: 8,
+    lineHeight: 25,
+  },
+  btn: {
+    width: 110,
+    backgroundColor: '#a39116',
+    marginTop: 3,
+    paddingVertical: 5,
+    alignItems: 'center',
+    borderRadius: 6,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  btnText: {
+    color: '#fff',
+    fontWeight: 500,
+    letterSpacing: 1.2,
+    fontSize: 15,
+  },
+
+  priceView: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
+  priceText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  originalPriceText: {
+    fontSize: 12,
+    textDecorationLine: 'line-through',
+    color: 'gray',
+  },
+  discountText: {
+    fontSize: 12,
+    color: '#ff8c00',
+  },
+});
+
+export default CourseCard;
