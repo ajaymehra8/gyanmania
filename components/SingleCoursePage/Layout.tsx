@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#fff',
     marginTop: 10,
+    // testing
   },
 });
 
