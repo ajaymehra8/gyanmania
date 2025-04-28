@@ -11,7 +11,7 @@ const SingleCourse = ({route}: prop) => {
   const {_id} = route.params;
   console.log(_id);
   return (
-    <Layout>
+    <Layout noHead>
       <SingleCoursePage _id={'kdslfj'}/>
     </Layout>
   );
