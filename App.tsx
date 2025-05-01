@@ -19,6 +19,7 @@ const App = () => {
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Courses" component={Courses} />
         <Stack.Screen name="SingleCourse" component={SingleCourse} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

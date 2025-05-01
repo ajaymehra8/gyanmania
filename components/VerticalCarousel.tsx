@@ -34,7 +34,7 @@ function VerticalCarousel<T>({data, head, Card, styled}: VerticalCarouselProps<T
 
 const styles = StyleSheet.create({
   contentBox: {
-    minHeight: 270,
+    minHeight: '100%',
     paddingHorizontal: 12,
     paddingVertical: 10,
     paddingBottom:100,

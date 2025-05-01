@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState} from 'react';
 import CourseHead from './CourseHead';
 import Heropage from './Heropage';
 import AboutPage from './AboutPage';
 import TalkToMe from './TalkToMe';
 import PriceOverview from './PriceOverview';
 import PayBtn from './PayBtn';
-import { StyleSheet, View,ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
+import Content from './Content';
 interface props {
   _id: string;
 }
-const page = ({_id}: props) => {
+const Page = ({_id}: props) => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const course = {
     image:
       'https://i.ytimg.com/vi/wvxQT2RFICg/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAWYt8tSOyBGhfOQkITJejM-sM8Ww',
@@ -21,17 +23,25 @@ const page = ({_id}: props) => {
   };
   return (
     <>
-    <CourseHead course={course} />
+      <CourseHead
+        course={course}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+      />
 
-    <ScrollView>
-    <View style={styles.main}>
-      <Heropage course={course} />
-      <AboutPage course={course} />
-      <TalkToMe />
-      <PriceOverview course={course} />
-    </View>
-    </ScrollView>
-    <PayBtn course={course}/>
+      {activeIndex == 0 ? (
+        <ScrollView>
+          <View style={styles.main}>
+            <Heropage course={course} />
+            <AboutPage course={course} />
+            <TalkToMe />
+            <PriceOverview course={course} />
+          </View>
+        </ScrollView>
+      ) : (
+        <Content />
+      )}
+      <PayBtn course={course} />
     </>
   );
 };
@@ -41,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default page;
+export default Page;

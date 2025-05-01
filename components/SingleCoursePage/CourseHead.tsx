@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {SetStateAction} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Layout from './Layout';
@@ -9,20 +9,20 @@ interface Course {
   title: string;
   price: number;
   discount?: number;
-  description:string;
-
+  description: string;
 }
 interface props {
   course: Course;
+  activeIndex: number;
+  setActiveIndex: React.Dispatch<SetStateAction<number>>;
 }
-const CourseHead = ({course}: props) => {
-  const [activeIndex, setActiveIndex] = useState(0); // to track which button is active
+const CourseHead = ({course, activeIndex, setActiveIndex}: props) => {
+  const navigation = useNavigation();
 
-  const handlePress = index => {
+  const handlePress = (index: number) => {
     setActiveIndex(index); // set the clicked button as active
   };
 
-  const navigation = useNavigation();
   const title =
     course.title.length > 40 ? course.title.slice(0, 40) + '...' : course.title;
   const handleBack = () => {
@@ -47,7 +47,10 @@ const CourseHead = ({course}: props) => {
           onPress={() => {
             handlePress(0);
           }}>
-          <Text style={[styles.btnText,activeIndex === 0 && styles.activeText]}>Overview</Text>
+          <Text
+            style={[styles.btnText, activeIndex === 0 && styles.activeText]}>
+            Overview
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.btn, activeIndex === 1 && styles.activeBtn]}
@@ -55,7 +58,10 @@ const CourseHead = ({course}: props) => {
           onPress={() => {
             handlePress(1);
           }}>
-          <Text style={[styles.btnText,activeIndex === 1 && styles.activeText]}>Content</Text>
+          <Text
+            style={[styles.btnText, activeIndex === 1 && styles.activeText]}>
+            Content
+          </Text>
         </TouchableOpacity>
       </Layout>
     </>
@@ -71,15 +77,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 100,
-    borderWidth:.2,
-    borderColor:'gray',
+    borderWidth: 0.2,
+    borderColor: 'gray',
   },
-  activeBtn:{
+  activeBtn: {
     backgroundColor: '#cdd148',
-    borderWidth:0,
+    borderWidth: 0,
   },
-  activeText:{
-    color:'white',
+  activeText: {
+    color: 'white',
   },
   btnText: {
     color: 'black',
