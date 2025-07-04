@@ -47,7 +47,7 @@ const Page = ({_id}: props) => {
 };
 const styles = StyleSheet.create({
   main: {
-    paddingBottom: 30,
+    paddingBottom: 130,
   },
 });
 

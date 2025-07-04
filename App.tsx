@@ -7,7 +7,7 @@ import {RootStackParamList} from './types';
 import Chat from './screens/Chat';
 import Courses from './screens/Courses';
 import SingleCourse from './screens/SingleCourse';
-
+import VideoPlayerPage from './screens/VideoPlayerPage';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Courses" component={Courses} />
         <Stack.Screen name="SingleCourse" component={SingleCourse} />
-
+        <Stack.Screen name="VideoPlayerPage" component={VideoPlayerPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

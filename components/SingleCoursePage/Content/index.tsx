@@ -8,15 +8,15 @@ interface Content {
   video: string;
 }
 const Page = () => {
-
- 
-  const data:Content[]=[{
-image:
-'https://i.ytimg.com/vi/wvxQT2RFICg/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAWYt8tSOyBGhfOQkITJejM-sM8Ww',
-title:
-'Some application kjlsadj lksdfjal lkjdfsa lkjsdfal of trigonometry class.',
-video:'https://www.youtube.com/watch?v=KEG7b851Ric',
-  }];
+  const data: Content[] = [
+    {
+      image:
+        'https://i.ytimg.com/vi/wvxQT2RFICg/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAWYt8tSOyBGhfOQkITJejM-sM8Ww',
+      title:
+        'Some application kjlsadj lksdfjal lkjdfsa lkjsdfal of trigonometry class.',
+      video: 'https://www.youtube.com/watch?v=KEG7b851Ric',
+    },
+  ];
   return (
     <>
       <VerticalCarousel<Content>

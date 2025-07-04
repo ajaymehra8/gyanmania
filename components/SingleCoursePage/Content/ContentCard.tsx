@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Image,
   TouchableOpacity,
@@ -12,7 +13,7 @@ import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import type {RootStackParamList} from '../../../types';
 type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'SingleCourse'
+  'VideoPlayerPage'
 >;
 
 interface Content {
@@ -28,11 +29,12 @@ const {width: screenWidth} = Dimensions.get('window');
 const ContentCard = ({item}: props) => {
   const navigation = useNavigation<NavigationProp>();
   const handleClick = () => {
-    navigation.navigate('SingleCourse', {_id: 'kldsa'});
+    navigation.navigate('VideoPlayerPage', {_id: 'kldsa'});
   };
   const shortText = item.title.length > 24 ? item.title.slice(0, 24) : '';
 
   return (
+    <>
     <TouchableOpacity activeOpacity={1} onPress={handleClick}>
       <View style={styles.ContentCard}>
         <Image
@@ -48,6 +50,7 @@ const ContentCard = ({item}: props) => {
         </View>
       </View>
     </TouchableOpacity>
+    </>
   );
 };
 const styles = StyleSheet.create({

@@ -5,6 +5,8 @@ export type RootStackParamList = {
   Chat:undefined;
   Courses:{filter?:string};
   SingleCourse:{_id?:string};
+    VideoPlayerPage:{_id?:string};
+
 
 };
 

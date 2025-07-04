@@ -23,6 +23,7 @@ const Layout = ({children, row, noMargin, gap}: props) => {
 };
 const styles = StyleSheet.create({
   layout: {
+    width:'100%',
     padding: 15,
     backgroundColor: '#fff',
     borderBottomWidth: 0.2,
